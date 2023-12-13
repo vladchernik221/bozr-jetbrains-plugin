@@ -11,6 +11,9 @@
     <depends>com.intellij.modules.platform</depends>
 
     <extensions defaultExtensionNs="com.intellij">
+        <iconProvider implementation="com.ukg.bozr.bozrplugin.icons.BozrIconProvider" order="first"/>
         <configurationType implementation="com.ukg.bozr.bozrplugin.runconfiguration.BozrRunConfigurationType"/>
+        <runConfigurationProducer
+                implementation="com.ukg.bozr.bozrplugin.runconfiguration.BozrFileLazyRunConfigurationProducer"/>
     </extensions>
 </idea-plugin>
