@@ -1,12 +1,116 @@
-<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M32.0845 7.94025V4H24.0203V7.9896H16.029V4H7.91553V7.94025H4V36H16.0044V32.0045C16.0058 30.9457 16.4274 29.9308 17.1766 29.1826C17.9258 28.4345 18.9412 28.0143 20 28.0143C21.0588 28.0143 22.0743 28.4345 22.8234 29.1826C23.5726 29.9308 23.9942 30.9457 23.9956 32.0045V36H36V7.94025H32.0845Z"
-          fill="url(#paint0_linear)"/>
-    <defs>
-        <linearGradient id="paint0_linear" x1="2.94192" y1="4.89955" x2="37.7772" y2="39.7345"
-                        gradientUnits="userSpaceOnUse">
-            <stop offset="0.15937" stop-color="#3BEA62"/>
-            <stop offset="0.5404" stop-color="#3C99CC"/>
-            <stop offset="0.93739" stop-color="#6B57FF"/>
-        </linearGradient>
-    </defs>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+        width="16"
+        height="16"
+        version="1.1"
+        id="svg891"
+        sodipodi:docname="bozr.svg"
+        viewBox="0 0 64 64"
+        inkscape:version="1.1.1 (3bf5ae0d25, 2021-09-20)"
+        xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+        xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+        xmlns="http://www.w3.org/2000/svg"
+        xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+          id="defs895" />
+  <sodipodi:namedview
+          id="namedview893"
+          pagecolor="#ffffff"
+          bordercolor="#666666"
+          borderopacity="1.0"
+          inkscape:pageshadow="2"
+          inkscape:pageopacity="0.0"
+          inkscape:pagecheckerboard="0"
+          showgrid="false"
+          scale-x="5.5"
+          inkscape:zoom="26.133333"
+          inkscape:cx="7.1556123"
+          inkscape:cy="7.5191327"
+          inkscape:window-width="1920"
+          inkscape:window-height="1137"
+          inkscape:window-x="-8"
+          inkscape:window-y="-8"
+          inkscape:window-maximized="1"
+          inkscape:current-layer="g889" />
+  <g
+          id="g862">
+    <title
+            id="title859">background</title>
+    <rect
+            fill="none"
+            id="canvas_background"
+            height="102"
+            width="302"
+            y="-1"
+            x="-1" />
+  </g>
+  <g
+          id="g889">
+    <title
+            id="title864">Layer 1</title>
+    <polyline
+            id="svg_1"
+            fill="none"
+            stroke="#556080"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-miterlimit="10"
+            points="21.571430206298828,16.714293718338013 4.571432113647461,16.714293718338013 4.571432113647461,33.714295625686646 "
+            transform="translate(-1.5714321,-13.714294)"
+            style="stroke-width:4;stroke-miterlimit:10;stroke-dasharray:none" />
+    <polyline
+            id="svg_2"
+            fill="none"
+            stroke="#556080"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-miterlimit="10"
+            points="46.57143020629883,74.71429562568665 62.57143020629883,74.71429562568665 62.57143020629883,58.714295625686646 "
+            transform="translate(-1.5714321,-13.714294)"
+            style="stroke-width:4;stroke-miterlimit:10;stroke-dasharray:none" />
+    <polyline
+            id="svg_3"
+            fill="none"
+            stroke="#556080"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-miterlimit="10"
+            points="62.57143020629883,33.714295625686646 62.57143020629883,16.714293718338013 46.57143020629883,16.714293718338013 "
+            transform="translate(-1.5714321,-13.714294)"
+            style="stroke-width:4;stroke-miterlimit:10;stroke-dasharray:none" />
+    <polyline
+            id="svg_4"
+            fill="none"
+            stroke="#556080"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-miterlimit="10"
+            points="4.571432113647461,58.714295625686646 4.571432113647461,74.71429562568665 21.571430206298828,74.71429562568665 "
+            transform="translate(-1.5714321,-13.714294)"
+            style="stroke-width:4;stroke-miterlimit:10;stroke-dasharray:none" />
+    <line
+            id="svg_5"
+            fill="none"
+            stroke="#88c057"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-miterlimit="10"
+            y2="46"
+            x2="31.999998"
+            y1="18.000002"
+            x1="31.999998"
+            style="stroke-width:4;stroke-miterlimit:10;stroke-dasharray:none" />
+    <line
+            id="svg_6"
+            fill="none"
+            stroke="#88c057"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-miterlimit="10"
+            y2="32"
+            x2="18"
+            y1="32"
+            x1="45.999996"
+            style="stroke-width:4;stroke-miterlimit:10;stroke-dasharray:none" />
+  </g>
 </svg>
