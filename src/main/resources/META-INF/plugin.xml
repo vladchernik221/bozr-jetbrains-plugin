@@ -1,0 +1,16 @@
+<idea-plugin>
+    <id>com.ukg.bozr.bozr-plugin</id>
+    <name>Bozr</name>
+    <vendor email="uladzislau.chernik@ukg.com" url="https://www.ukg.com">UKG</vendor>
+
+    <description><![CDATA[
+    Plugin for bozr
+    For any problems, please, contact <a href="mailto:uladzislau.chernik@ukg.com">Uladzislau Chernik</a>
+    ]]></description>
+
+    <depends>com.intellij.modules.platform</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+
+    </extensions>
+</idea-plugin>
