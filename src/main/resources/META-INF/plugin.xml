@@ -15,5 +15,9 @@
         <configurationType implementation="com.ukg.bozr.bozrplugin.runconfiguration.BozrRunConfigurationType"/>
         <runConfigurationProducer
                 implementation="com.ukg.bozr.bozrplugin.runconfiguration.BozrFileLazyRunConfigurationProducer"/>
+        <runLineMarkerContributor
+                implementationClass="com.ukg.bozr.bozrplugin.runconfiguration.BozrRunLineMarkerContributor"
+                language="JSON"
+                factoryClass="com.ukg.bozr.bozrplugin.runconfiguration.BozrConfigurationFactory"/>
     </extensions>
 </idea-plugin>

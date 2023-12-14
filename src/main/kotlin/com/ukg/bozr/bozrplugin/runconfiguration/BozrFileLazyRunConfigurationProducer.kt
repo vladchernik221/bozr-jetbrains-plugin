@@ -15,7 +15,15 @@ class BozrFileLazyRunConfigurationProducer : LazyRunConfigurationProducer<BozrRu
     override fun getConfigurationFactory(): ConfigurationFactory = BozrConfigurationFactory(BozrRunConfigurationType())
 
     override fun setupConfigurationFromContext(configuration: BozrRunConfiguration, context: ConfigurationContext, ref: Ref<PsiElement>): Boolean {
-        val psiLocation = context.psiLocation as? PsiFileSystemItem ?: return false
+        var psiLocation = context.psiLocation as? PsiFileSystemItem
+
+        if (psiLocation == null) {
+            psiLocation = context.psiLocation?.parent as? PsiFileSystemItem
+        }
+
+        if (psiLocation == null) {
+            return false
+        }
 
         if (psiLocation is PsiFile && !bozrFileService.isFileBozrTest(psiLocation)) {
             return false

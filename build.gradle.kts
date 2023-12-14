@@ -15,6 +15,12 @@ repositories {
     mavenCentral()
 }
 
+idea {
+    module {
+        isDownloadSources = true
+    }
+}
+
 intellij {
     updateSinceUntilBuild.set(false)
     type.set(properties("platformType"))
