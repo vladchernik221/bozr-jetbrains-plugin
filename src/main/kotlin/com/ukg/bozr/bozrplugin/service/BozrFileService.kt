@@ -15,10 +15,10 @@ class BozrFileService {
     }
 
     fun isFileBozrTest(file: PsiFile): Boolean =
-            file.let { it as? JsonFile }
-                    ?.let { it.topLevelValue as? JsonArray }
-                    ?.valueList
-                    ?.asSequence()
-                    ?.mapNotNull { it as? JsonObject }
-                    ?.any { it.findProperty("calls") != null } ?: false
+        file.let { it as? JsonFile }
+            ?.let { it.topLevelValue as? JsonArray }
+            ?.valueList
+            ?.asSequence()
+            ?.mapNotNull { it as? JsonObject }
+            ?.any { it.findProperty("calls") != null } ?: false
 }

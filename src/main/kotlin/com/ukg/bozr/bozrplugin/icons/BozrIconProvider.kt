@@ -10,8 +10,8 @@ class BozrIconProvider : IconProvider() {
     private val bozrFileService = BozrFileService.getInstance()
 
     override fun getIcon(psiElement: PsiElement, flag: Int): Icon? =
-            psiElement.let { it as? PsiFile }
-                    ?.takeIf { bozrFileService.isFileBozrTest(it) }
-                    ?.let { BozrIcons.BozrIcon }
+        psiElement.let { it as? PsiFile }
+            ?.takeIf { bozrFileService.isFileBozrTest(it) }
+            ?.let { BozrIcons.BozrIcon }
 
 }

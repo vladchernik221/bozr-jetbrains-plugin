@@ -13,13 +13,14 @@ class BozrSettingsEditor : SettingsEditor<BozrRunConfiguration>() {
 
     init {
         scriptPathField.addBrowseFolderListener(
-                "Select Test Files",
-                null,
-                null,
-                FileChooserDescriptorFactory.createSingleFileOrFolderDescriptor())
+            "Select Test Files",
+            null,
+            null,
+            FileChooserDescriptorFactory.createSingleFileOrFolderDescriptor()
+        )
         myPanel = FormBuilder.createFormBuilder()
-                .addLabeledComponent("Test files", scriptPathField)
-                .panel
+            .addLabeledComponent("Test files", scriptPathField)
+            .panel
     }
 
     override fun resetEditorFrom(bozrRunConfiguration: BozrRunConfiguration) {

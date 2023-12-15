@@ -5,10 +5,10 @@ import com.intellij.openapi.util.NotNullLazyValue
 import com.ukg.bozr.bozrplugin.icons.BozrIcons
 
 class BozrRunConfigurationType : ConfigurationTypeBase(
-        ID,
-        "Bozr",
-        "Bozr run tests",
-        NotNullLazyValue.createValue { BozrIcons.BozrIcon }) {
+    ID,
+    "Bozr",
+    "Bozr run tests",
+    NotNullLazyValue.createValue { BozrIcons.BozrIcon }) {
     companion object {
         const val ID = "BozrRunConfiguration"
     }

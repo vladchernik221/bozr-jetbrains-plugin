@@ -10,7 +10,7 @@ class BozrConfigurationFactory(type: ConfigurationType) : ConfigurationFactory(t
     override fun getId(): String = BozrRunConfigurationType.ID
 
     override fun createTemplateConfiguration(project: Project): RunConfiguration =
-            BozrRunConfiguration(project, this, "Bozr")
+        BozrRunConfiguration(project, this, "Bozr")
 
     override fun getOptionsClass(): Class<out BaseState> = BozrRunConfigurationOptions::class.java
 }

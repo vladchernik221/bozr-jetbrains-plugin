@@ -14,7 +14,11 @@ class BozrFileLazyRunConfigurationProducer : LazyRunConfigurationProducer<BozrRu
 
     override fun getConfigurationFactory(): ConfigurationFactory = BozrConfigurationFactory(BozrRunConfigurationType())
 
-    override fun setupConfigurationFromContext(configuration: BozrRunConfiguration, context: ConfigurationContext, ref: Ref<PsiElement>): Boolean {
+    override fun setupConfigurationFromContext(
+        configuration: BozrRunConfiguration,
+        context: ConfigurationContext,
+        ref: Ref<PsiElement>
+    ): Boolean {
         var psiLocation = context.psiLocation as? PsiFileSystemItem
 
         if (psiLocation == null) {
@@ -34,5 +38,8 @@ class BozrFileLazyRunConfigurationProducer : LazyRunConfigurationProducer<BozrRu
         return true
     }
 
-    override fun isConfigurationFromContext(configuration: BozrRunConfiguration, context: ConfigurationContext): Boolean = true
+    override fun isConfigurationFromContext(
+        configuration: BozrRunConfiguration,
+        context: ConfigurationContext
+    ): Boolean = true
 }

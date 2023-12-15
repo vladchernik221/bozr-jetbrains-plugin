@@ -12,12 +12,12 @@ class BozrRunLineMarkerContributor : RunLineMarkerContributor() {
     private val bozrFileService = BozrFileService.getInstance()
 
     override fun getInfo(element: PsiElement): Info? =
-            element.let { it as? JsonArray }
-                    ?.let { it.parent as? PsiFile }
-                    ?.takeIf { bozrFileService.isFileBozrTest(it) }
-                    ?.let {
-                        Info(AllIcons.RunConfigurations.TestState.Run, ExecutorAction.getActions()) {
-                            "test"
-                        }
-                    }
+        element.let { it as? JsonArray }
+            ?.let { it.parent as? PsiFile }
+            ?.takeIf { bozrFileService.isFileBozrTest(it) }
+            ?.let {
+                Info(AllIcons.RunConfigurations.TestState.Run, ExecutorAction.getActions()) {
+                    "test"
+                }
+            }
 }
