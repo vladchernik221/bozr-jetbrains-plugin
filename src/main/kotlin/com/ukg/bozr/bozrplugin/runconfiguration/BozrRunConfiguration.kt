@@ -34,19 +34,27 @@ class BozrRunConfiguration(project: Project, factory: ConfigurationFactory, name
         options.setTestsPath(testsPath)
     }
 
+    fun getShowInfo(): Boolean = options.getShowInfo()
+
+    fun setShowInfo(showInfo: Boolean) {
+        options.setShowInfo(showInfo)
+    }
+
     override fun getConfigurationEditor(): SettingsEditor<out RunConfiguration> = BozrSettingsEditor()
 
     override fun getState(executor: Executor, environment: ExecutionEnvironment): RunProfileState =
         object : CommandLineState(environment) {
             override fun startProcess(): ProcessHandler {
-                val commandLine = GeneralCommandLine(
-                    "go_build_bozr_",
-                    "-i",
-                    "-H",
-//                    "https://wfrdev1.int.kronos.com/ta/",
-                    "http://localhost:8080/ta/",
-                    options.getTestsPath()
-                )
+                val commands = arrayListOf("go_build_bozr_")
+                commands.add("-H")
+                if (options.getShowInfo()) {
+                    commands.add("-i")
+                }
+//                commands.add("https://wfrdev1.int.kronos.com/ta/"))
+                commands.add("http://localhost:8080/ta/")
+                commands.add(options.getTestsPath() ?: "")
+
+                val commandLine = GeneralCommandLine(*commands.toTypedArray(), options.getTestsPath())
 
                 val processHandler = ProcessHandlerFactory.getInstance()
                     .createColoredProcessHandler(commandLine)
