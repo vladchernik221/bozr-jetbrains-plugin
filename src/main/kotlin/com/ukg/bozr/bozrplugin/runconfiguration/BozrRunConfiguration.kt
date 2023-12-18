@@ -1,5 +1,7 @@
 package com.ukg.bozr.bozrplugin.runconfiguration
 
+import com.intellij.execution.DefaultExecutionResult
+import com.intellij.execution.ExecutionResult
 import com.intellij.execution.Executor
 import com.intellij.execution.configurations.CommandLineState
 import com.intellij.execution.configurations.ConfigurationFactory
@@ -11,8 +13,14 @@ import com.intellij.execution.process.ProcessHandler
 import com.intellij.execution.process.ProcessHandlerFactory
 import com.intellij.execution.process.ProcessTerminatedListener
 import com.intellij.execution.runners.ExecutionEnvironment
+import com.intellij.execution.runners.ProgramRunner
+import com.intellij.execution.testframework.TestConsoleProperties
+import com.intellij.execution.testframework.sm.SMTestRunnerConnectionUtil
+import com.intellij.execution.testframework.sm.runner.SMTRunnerConsoleProperties
+import com.intellij.execution.testframework.ui.BaseTestsOutputConsoleView
 import com.intellij.openapi.options.SettingsEditor
 import com.intellij.openapi.project.Project
+import com.intellij.util.ui.UIUtil
 
 class BozrRunConfiguration(project: Project, factory: ConfigurationFactory, name: String) :
     RunConfigurationBase<BozrRunConfigurationOptions>(project, factory, name) {
@@ -32,9 +40,11 @@ class BozrRunConfiguration(project: Project, factory: ConfigurationFactory, name
         object : CommandLineState(environment) {
             override fun startProcess(): ProcessHandler {
                 val commandLine = GeneralCommandLine(
-                    "bozr",
+                    "go_build_bozr_",
+                    "-i",
                     "-H",
-                    "http://localhost:8080/",
+//                    "https://wfrdev1.int.kronos.com/ta/",
+                    "http://localhost:8080/ta/",
                     options.getTestsPath()
                 )
 
@@ -42,6 +52,23 @@ class BozrRunConfiguration(project: Project, factory: ConfigurationFactory, name
                     .createColoredProcessHandler(commandLine)
                 ProcessTerminatedListener.attach(processHandler)
                 return processHandler
+            }
+
+            override fun execute(executor: Executor, runner: ProgramRunner<*>): ExecutionResult {
+                val processHandler = startProcess()
+
+                val testConsoleProperties = SMTRunnerConsoleProperties(this@BozrRunConfiguration, "bozr", executor)
+                testConsoleProperties.setIfUndefined(TestConsoleProperties.HIDE_PASSED_TESTS, false)
+
+                val console = UIUtil.invokeAndWaitIfNeeded<BaseTestsOutputConsoleView> {
+                    SMTestRunnerConnectionUtil.createAndAttachConsole("bozr", processHandler, testConsoleProperties)
+                }
+
+                return DefaultExecutionResult(
+                    console,
+                    processHandler,
+                    *createActions(console, processHandler, executor)
+                )
             }
         }
 }
