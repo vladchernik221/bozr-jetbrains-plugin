@@ -46,10 +46,10 @@ class BozrRunConfiguration(project: Project, factory: ConfigurationFactory, name
         object : CommandLineState(environment) {
             override fun startProcess(): ProcessHandler {
                 val commands = arrayListOf("go_build_bozr_")
-                commands.add("-H")
                 if (options.getShowInfo()) {
                     commands.add("-i")
                 }
+                commands.add("-H")
 //                commands.add("https://wfrdev1.int.kronos.com/ta/"))
                 commands.add("http://localhost:8080/ta/")
                 commands.add(options.getTestsPath() ?: "")
