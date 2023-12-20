@@ -19,5 +19,10 @@
                 implementationClass="com.ukg.bozr.bozrplugin.runconfiguration.BozrRunLineMarkerContributor"
                 language="JSON"
                 factoryClass="com.ukg.bozr.bozrplugin.runconfiguration.BozrConfigurationFactory"/>
+
+
+        <applicationConfigurable parentId="tools" instance="com.ukg.bozr.bozrplugin.settings.BozrSettingsConfigurable"
+                                 id="com.ukg.bozr.bozrplugin.settings.BozrSettingsConfigurable"
+                                 displayName="Bozr"/>
     </extensions>
 </idea-plugin>

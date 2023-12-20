@@ -21,6 +21,7 @@ import com.intellij.execution.testframework.ui.BaseTestsOutputConsoleView
 import com.intellij.openapi.options.SettingsEditor
 import com.intellij.openapi.project.Project
 import com.intellij.util.ui.UIUtil
+import com.ukg.bozr.bozrplugin.settings.BozrSettingsState
 
 class BozrRunConfiguration(project: Project, factory: ConfigurationFactory, name: String) :
     RunConfigurationBase<BozrRunConfigurationOptions>(project, factory, name) {
@@ -34,27 +35,34 @@ class BozrRunConfiguration(project: Project, factory: ConfigurationFactory, name
         options.setTestsPath(testsPath)
     }
 
+    fun getHost(): String = options.getHost() ?: BozrSettingsState.getInstance().defaultHost
+
+    fun setHost(host: String?) {
+        options.setHost(host)
+    }
+
     fun getShowInfo(): Boolean = options.getShowInfo()
 
     fun setShowInfo(showInfo: Boolean) {
         options.setShowInfo(showInfo)
     }
 
-    override fun getConfigurationEditor(): SettingsEditor<out RunConfiguration> = BozrSettingsEditor()
+    override fun getConfigurationEditor(): SettingsEditor<out RunConfiguration> = BozrRunConfigurationSettingsEditor()
 
     override fun getState(executor: Executor, environment: ExecutionEnvironment): RunProfileState =
         object : CommandLineState(environment) {
             override fun startProcess(): ProcessHandler {
-                val commands = arrayListOf("go_build_bozr_")
-                if (options.getShowInfo()) {
+                val commands = arrayListOf(BozrSettingsState.getInstance().executableLocation)
+                if (getShowInfo()) {
                     commands.add("-i")
                 }
-                commands.add("-H")
-//                commands.add("https://wfrdev1.int.kronos.com/ta/"))
-                commands.add("http://localhost:8080/ta/")
-                commands.add(options.getTestsPath() ?: "")
+                if (getHost().isNotBlank()) {
+                    commands.add("-H")
+                    commands.add(getHost())
+                }
+                commands.add(getTestsPath() ?: "")
 
-                val commandLine = GeneralCommandLine(*commands.toTypedArray(), options.getTestsPath())
+                val commandLine = GeneralCommandLine(*commands.toTypedArray())
 
                 val processHandler = ProcessHandlerFactory.getInstance()
                     .createColoredProcessHandler(commandLine)

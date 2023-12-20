@@ -9,8 +9,8 @@ import com.intellij.ui.dsl.builder.bindText
 import com.intellij.ui.dsl.builder.panel
 import javax.swing.JComponent
 
-class BozrSettingsEditor : SettingsEditor<BozrRunConfiguration>() {
-    private val bozrUiSettings = BozrUiSettings()
+class BozrRunConfigurationSettingsEditor : SettingsEditor<BozrRunConfiguration>() {
+    private val configurationUiSettings = BozrRunConfigurationUiSettings()
     private val panel: DialogPanel =
         panel {
             row("Test files") {
@@ -18,24 +18,31 @@ class BozrSettingsEditor : SettingsEditor<BozrRunConfiguration>() {
                     "Select Test Files",
                     null,
                     FileChooserDescriptorFactory.createSingleFileOrFolderDescriptor(),
-                ).align(Align.FILL).bindText(bozrUiSettings::testsPath)
+                ).align(Align.FILL).bindText(configurationUiSettings::testsPath)
             }
+
+            row("Host") {
+                textField().align(Align.FILL).bindText(configurationUiSettings::host)
+            }
+
             row {
-                checkBox("Show info").bindSelected(bozrUiSettings::showInfo)
+                checkBox("Show info").bindSelected(configurationUiSettings::showInfo)
             }
         }
 
     override fun createEditor(): JComponent = panel
 
     override fun resetEditorFrom(bozrRunConfiguration: BozrRunConfiguration) {
-        bozrUiSettings.testsPath = bozrRunConfiguration.getTestsPath() ?: ""
-        bozrUiSettings.showInfo = bozrRunConfiguration.getShowInfo()
+        configurationUiSettings.testsPath = bozrRunConfiguration.getTestsPath() ?: ""
+        configurationUiSettings.showInfo = bozrRunConfiguration.getShowInfo()
+        configurationUiSettings.host = bozrRunConfiguration.getHost()
         panel.reset()
     }
 
     override fun applyEditorTo(bozrRunConfiguration: BozrRunConfiguration) {
         panel.apply()
-        bozrRunConfiguration.setTestsPath(bozrUiSettings.testsPath)
-        bozrRunConfiguration.setShowInfo(bozrUiSettings.showInfo)
+        bozrRunConfiguration.setTestsPath(configurationUiSettings.testsPath)
+        bozrRunConfiguration.setShowInfo(configurationUiSettings.showInfo)
+        bozrRunConfiguration.setHost(configurationUiSettings.host)
     }
 }

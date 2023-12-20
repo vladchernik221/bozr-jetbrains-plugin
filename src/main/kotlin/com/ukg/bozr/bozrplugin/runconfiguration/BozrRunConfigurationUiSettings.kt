@@ -1,6 +1,7 @@
 package com.ukg.bozr.bozrplugin.runconfiguration
 
-data class BozrUiSettings(
+data class BozrRunConfigurationUiSettings(
     var testsPath: String = "",
+    var host: String = "",
     var showInfo: Boolean = true,
 )
