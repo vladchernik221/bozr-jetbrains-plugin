@@ -26,7 +26,7 @@ class BozrRunConfigurationSettingsEditor : SettingsEditor<BozrRunConfiguration>(
             }
 
             row {
-                checkBox("Show info").bindSelected(configurationUiSettings::showInfo)
+                checkBox("Info mode").bindSelected(configurationUiSettings::infoMode)
             }
         }
 
@@ -34,7 +34,7 @@ class BozrRunConfigurationSettingsEditor : SettingsEditor<BozrRunConfiguration>(
 
     override fun resetEditorFrom(bozrRunConfiguration: BozrRunConfiguration) {
         configurationUiSettings.testsPath = bozrRunConfiguration.getTestsPath() ?: ""
-        configurationUiSettings.showInfo = bozrRunConfiguration.getShowInfo()
+        configurationUiSettings.infoMode = bozrRunConfiguration.getInfoMode()
         configurationUiSettings.host = bozrRunConfiguration.getHost()
         panel.reset()
     }
@@ -42,7 +42,7 @@ class BozrRunConfigurationSettingsEditor : SettingsEditor<BozrRunConfiguration>(
     override fun applyEditorTo(bozrRunConfiguration: BozrRunConfiguration) {
         panel.apply()
         bozrRunConfiguration.setTestsPath(configurationUiSettings.testsPath)
-        bozrRunConfiguration.setShowInfo(configurationUiSettings.showInfo)
+        bozrRunConfiguration.setInfoMode(configurationUiSettings.infoMode)
         bozrRunConfiguration.setHost(configurationUiSettings.host)
     }
 }

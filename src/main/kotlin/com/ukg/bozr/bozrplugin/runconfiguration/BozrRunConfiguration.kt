@@ -42,10 +42,10 @@ class BozrRunConfiguration(project: Project, factory: ConfigurationFactory, name
         options.setHost(host)
     }
 
-    fun getShowInfo(): Boolean = options.getShowInfo()
+    fun getInfoMode(): Boolean = options.getInfoMode()
 
-    fun setShowInfo(showInfo: Boolean) {
-        options.setShowInfo(showInfo)
+    fun setInfoMode(infoMode: Boolean) {
+        options.setInfoMode(infoMode)
     }
 
     override fun getConfigurationEditor(): SettingsEditor<out RunConfiguration> = BozrRunConfigurationSettingsEditor()
@@ -54,7 +54,7 @@ class BozrRunConfiguration(project: Project, factory: ConfigurationFactory, name
         object : CommandLineState(environment) {
             override fun startProcess(): ProcessHandler {
                 val commands = arrayListOf(BozrSettingsState.getInstance().executableLocation)
-                if (getShowInfo()) {
+                if (getInfoMode()) {
                     commands.add("-i")
                 }
                 if (getHost().isNotBlank()) {

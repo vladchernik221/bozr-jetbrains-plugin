@@ -5,7 +5,7 @@ import com.intellij.execution.configurations.RunConfigurationOptions
 class BozrRunConfigurationOptions : RunConfigurationOptions() {
     private val testsPath = string().provideDelegate(this, "testsPath")
     private val host = string().provideDelegate(this, "host")
-    private val showInfo = property(true).provideDelegate(this, "showInfo")
+    private val infoMode = property(true).provideDelegate(this, "infoMode")
 
     fun getTestsPath(): String? = testsPath.getValue(this)
 
@@ -19,9 +19,9 @@ class BozrRunConfigurationOptions : RunConfigurationOptions() {
         this.host.setValue(this, host)
     }
 
-    fun getShowInfo(): Boolean = showInfo.getValue(this)
+    fun getInfoMode(): Boolean = infoMode.getValue(this)
 
-    fun setShowInfo(showInfo: Boolean) {
-        this.showInfo.setValue(this, showInfo)
+    fun setInfoMode(infoMode: Boolean) {
+        this.infoMode.setValue(this, infoMode)
     }
 }
