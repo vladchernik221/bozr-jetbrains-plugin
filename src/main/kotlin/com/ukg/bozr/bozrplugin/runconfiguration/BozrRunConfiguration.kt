@@ -61,6 +61,7 @@ class BozrRunConfiguration(project: Project, factory: ConfigurationFactory, name
                     commands.add("-H")
                     commands.add(getHost())
                 }
+                commands.add("-intellij")
                 commands.add(getTestsPath() ?: "")
 
                 val commandLine = GeneralCommandLine(*commands.toTypedArray())
