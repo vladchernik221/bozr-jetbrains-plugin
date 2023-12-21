@@ -17,6 +17,7 @@ import com.intellij.execution.runners.ProgramRunner
 import com.intellij.execution.testframework.TestConsoleProperties
 import com.intellij.execution.testframework.sm.SMTestRunnerConnectionUtil
 import com.intellij.execution.testframework.sm.runner.SMTRunnerConsoleProperties
+import com.intellij.execution.testframework.sm.runner.SMTestLocator
 import com.intellij.execution.testframework.ui.BaseTestsOutputConsoleView
 import com.intellij.openapi.options.SettingsEditor
 import com.intellij.openapi.project.Project
@@ -73,7 +74,10 @@ class BozrRunConfiguration(project: Project, factory: ConfigurationFactory, name
             override fun execute(executor: Executor, runner: ProgramRunner<*>): ExecutionResult {
                 val processHandler = startProcess()
 
-                val testConsoleProperties = SMTRunnerConsoleProperties(this@BozrRunConfiguration, "bozr", executor)
+                val testConsoleProperties =
+                    object : SMTRunnerConsoleProperties(this@BozrRunConfiguration, "bozr", executor) {
+                        override fun getTestLocator(): SMTestLocator = BozrTestLocator(getTestsPath())
+                    }
                 testConsoleProperties.setIfUndefined(TestConsoleProperties.HIDE_PASSED_TESTS, false)
 
                 val console = UIUtil.invokeAndWaitIfNeeded<BaseTestsOutputConsoleView> {
