@@ -38,11 +38,7 @@ class BozrTestLocator(private val testsPath: String?) : SMTestLocator, DumbAware
         project: Project,
     ): List<Location<PsiElement>> {
         if (testsPath == null) return emptyList()
-        var vFile = VfsUtil.findFile(Paths.get(testsPath), false)
-        for (c in path.split("|")) {
-            vFile = vFile?.findChild(c)
-        }
-
+        val vFile = VfsUtil.findFile(Paths.get("${testsPath}/${path}"), false)
         return vFile?.let { PsiManager.getInstance(project).findFile(it) }
             ?.let { PsiLocation.fromPsiElement(it as PsiElement) }?.let { listOf(it) }
             ?: emptyList()
@@ -53,13 +49,8 @@ class BozrTestLocator(private val testsPath: String?) : SMTestLocator, DumbAware
         project: Project,
     ): List<Location<PsiElement>> {
         if (testsPath == null) return emptyList()
-        var vFile = VfsUtil.findFile(Paths.get(testsPath), false)
-        val (suite, test) = path.split("/")
-        val suitePath = suite.split("|")
-        for (c in suitePath) {
-            vFile = vFile?.findChild(c)
-        }
-
+        val (suite, test) = path.split("|")
+        val vFile = VfsUtil.findFile(Paths.get("${testsPath}/${suite}"), false)
         return vFile?.let { PsiManager.getInstance(project).findFile(it) }
             ?.let { it as? JsonFile }
             ?.let { it.topLevelValue as? JsonArray }
