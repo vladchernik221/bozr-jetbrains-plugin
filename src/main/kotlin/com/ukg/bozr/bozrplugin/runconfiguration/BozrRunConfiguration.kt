@@ -48,6 +48,12 @@ class BozrRunConfiguration(project: Project, factory: ConfigurationFactory, name
         options.setInfoMode(infoMode)
     }
 
+    fun getWorkersCount(): Int = options.getWorkersCount()
+
+    fun setWorkersCount(workersCount: Int) {
+        options.setWorkersCount(workersCount)
+    }
+
     override fun getConfigurationEditor(): SettingsEditor<out RunConfiguration> = BozrRunConfigurationSettingsEditor()
 
     override fun getState(executor: Executor, environment: ExecutionEnvironment): RunProfileState =
@@ -60,6 +66,10 @@ class BozrRunConfiguration(project: Project, factory: ConfigurationFactory, name
                 if (getHost().isNotBlank()) {
                     commands.add("-H")
                     commands.add(getHost())
+                }
+                if (getWorkersCount() > 1) {
+                    commands.add("-w")
+                    commands.add(getWorkersCount().toString())
                 }
                 commands.add("-intellij")
                 commands.add(getTestsPath() ?: "")

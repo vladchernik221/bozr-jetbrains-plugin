@@ -6,6 +6,7 @@ class BozrRunConfigurationOptions : RunConfigurationOptions() {
     private val testsPath = string().provideDelegate(this, "testsPath")
     private val host = string().provideDelegate(this, "host")
     private val infoMode = property(true).provideDelegate(this, "infoMode")
+    private val workersCount = property(1).provideDelegate(this, "workersCount")
 
     fun getTestsPath(): String? = testsPath.getValue(this)
 
@@ -23,5 +24,11 @@ class BozrRunConfigurationOptions : RunConfigurationOptions() {
 
     fun setInfoMode(infoMode: Boolean) {
         this.infoMode.setValue(this, infoMode)
+    }
+
+    fun getWorkersCount(): Int = workersCount.getValue(this)
+
+    fun setWorkersCount(workersCount: Int) {
+        this.workersCount.setValue(this, workersCount)
     }
 }

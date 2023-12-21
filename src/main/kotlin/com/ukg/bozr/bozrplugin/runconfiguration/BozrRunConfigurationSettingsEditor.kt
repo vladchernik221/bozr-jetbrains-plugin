@@ -4,6 +4,7 @@ import com.intellij.openapi.fileChooser.FileChooserDescriptorFactory
 import com.intellij.openapi.options.SettingsEditor
 import com.intellij.openapi.ui.DialogPanel
 import com.intellij.ui.dsl.builder.Align
+import com.intellij.ui.dsl.builder.bindIntText
 import com.intellij.ui.dsl.builder.bindSelected
 import com.intellij.ui.dsl.builder.bindText
 import com.intellij.ui.dsl.builder.panel
@@ -23,9 +24,7 @@ class BozrRunConfigurationSettingsEditor : SettingsEditor<BozrRunConfiguration>(
 
             row("Host") {
                 textField().align(Align.FILL).bindText(configurationUiSettings::host)
-            }
-
-            row {
+                textField().label("Workers count").bindIntText(configurationUiSettings::workersCount)
                 checkBox("Info mode").bindSelected(configurationUiSettings::infoMode)
             }
         }
@@ -36,6 +35,7 @@ class BozrRunConfigurationSettingsEditor : SettingsEditor<BozrRunConfiguration>(
         configurationUiSettings.testsPath = bozrRunConfiguration.getTestsPath() ?: ""
         configurationUiSettings.infoMode = bozrRunConfiguration.getInfoMode()
         configurationUiSettings.host = bozrRunConfiguration.getHost()
+        configurationUiSettings.workersCount = bozrRunConfiguration.getWorkersCount()
         panel.reset()
     }
 
@@ -44,5 +44,6 @@ class BozrRunConfigurationSettingsEditor : SettingsEditor<BozrRunConfiguration>(
         bozrRunConfiguration.setTestsPath(configurationUiSettings.testsPath)
         bozrRunConfiguration.setInfoMode(configurationUiSettings.infoMode)
         bozrRunConfiguration.setHost(configurationUiSettings.host)
+        bozrRunConfiguration.setWorkersCount(configurationUiSettings.workersCount)
     }
 }
