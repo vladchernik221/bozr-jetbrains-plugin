@@ -7,6 +7,7 @@ import com.intellij.openapi.util.Ref
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiFile
 import com.intellij.psi.PsiFileSystemItem
+import com.intellij.psi.util.parentOfTypes
 import com.ukg.bozr.bozrplugin.service.BozrFileService
 
 class BozrFileLazyRunConfigurationProducer : LazyRunConfigurationProducer<BozrRunConfiguration>() {
@@ -22,7 +23,7 @@ class BozrFileLazyRunConfigurationProducer : LazyRunConfigurationProducer<BozrRu
         var psiLocation = context.psiLocation as? PsiFileSystemItem
 
         if (psiLocation == null) {
-            psiLocation = context.psiLocation?.parent as? PsiFileSystemItem
+            psiLocation = context.psiLocation?.parentOfTypes(PsiFileSystemItem::class)
         }
 
         if (psiLocation == null) {
